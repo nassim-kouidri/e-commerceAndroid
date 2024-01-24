@@ -1,4 +1,4 @@
-package com.esiea.ecommerce.nassim;
+package com.esiea.ecommerce.nassim.customer;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
@@ -13,10 +13,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.esiea.ecommerce.nassim.R;
 import com.esiea.ecommerce.nassim.model.User;
 import com.esiea.ecommerce.nassim.model.UserUpdateRequest;
 import com.esiea.ecommerce.nassim.network.NetworkManager;
 import com.esiea.ecommerce.nassim.network.RetrofitService;
+import com.esiea.ecommerce.nassim.utils.BottomNavigationHelper;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;

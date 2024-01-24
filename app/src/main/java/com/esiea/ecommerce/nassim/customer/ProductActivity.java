@@ -1,4 +1,4 @@
-package com.esiea.ecommerce.nassim;
+package com.esiea.ecommerce.nassim.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esiea.ecommerce.nassim.R;
 import com.esiea.ecommerce.nassim.model.Product;
 import com.esiea.ecommerce.nassim.network.NetworkManager;
 import com.esiea.ecommerce.nassim.network.RetrofitService;
+import com.esiea.ecommerce.nassim.utils.BottomNavigationHelper;
 
 import java.util.List;
 
@@ -70,12 +72,10 @@ public class ProductActivity extends AppCompatActivity implements ProductAdapter
 
     @Override
     public void onProductClick(int position) {
-        // Récupérer l'ID du produit sélectionné
         int productId = productList.get(position).getId();
 
-        // Naviguer vers l'écran de détail du produit en passant l'ID du produit
         Intent intent = new Intent(ProductActivity.this, ProductDetailActivity.class);
-        intent.putExtra("PRODUCT_ID", productId);  // Utiliser la même clé que dans ProductDetailActivity
+        intent.putExtra("PRODUCT_ID", productId);
         startActivity(intent);
     }
 

@@ -17,7 +17,7 @@
 
         <!-- activité de lancement -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".customer.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,11 +27,13 @@
 
         <!-- autres activités  -->
         <activity android:name=".MainActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ProductActivity" />
-        <activity android:name=".ProductDetailActivity" />
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".UserActivity" />
+        <activity android:name=".customer.RegisterActivity" />
+        <activity android:name=".customer.ProductActivity" />
+        <activity android:name=".customer.ProductDetailActivity" />
+        <activity android:name=".customer.CategoryActivity" />
+        <activity android:name=".customer.UserActivity" />
+        <activity android:name=".admin.ProductAdminActivity" />
+        <activity android:name=".admin.UpdateProductAdminActivity" />
 
     </application>
 

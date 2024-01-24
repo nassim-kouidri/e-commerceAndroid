@@ -1,14 +1,12 @@
-package com.esiea.ecommerce.nassim;
+package com.esiea.ecommerce.nassim.utils;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Intent;
 
-import com.esiea.ecommerce.nassim.CategoryActivity;
-import com.esiea.ecommerce.nassim.ProductActivity;
+import com.esiea.ecommerce.nassim.customer.CategoryActivity;
+import com.esiea.ecommerce.nassim.customer.ProductActivity;
 import com.esiea.ecommerce.nassim.R;
-import com.esiea.ecommerce.nassim.UserActivity;
+import com.esiea.ecommerce.nassim.customer.UserActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BottomNavigationHelper {

@@ -4,6 +4,7 @@ import com.esiea.ecommerce.nassim.model.AuthResponse;
 import com.esiea.ecommerce.nassim.model.Category;
 import com.esiea.ecommerce.nassim.model.LoginRequest;
 import com.esiea.ecommerce.nassim.model.Product;
+import com.esiea.ecommerce.nassim.model.ProductUpdateRequest;
 import com.esiea.ecommerce.nassim.model.User;
 import com.esiea.ecommerce.nassim.model.UserUpdateRequest;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -38,4 +40,10 @@ public interface RetrofitService {
 
     @PUT("users/{id}")
     Call<User> modifyUserProfile(@Path("id") int userId, @Body UserUpdateRequest modifiedUser);
+
+    @DELETE("products/{id}")
+    Call<Void> deleteProduct(@Path("id") int productId);
+
+    @PUT("products/{id}")
+    Call<Product> updateProduct(@Path("id") int productId, @Body ProductUpdateRequest modifiedProduct);
 }

@@ -1,4 +1,4 @@
-package com.esiea.ecommerce.nassim;
+package com.esiea.ecommerce.nassim.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.esiea.ecommerce.nassim.R;
 import com.esiea.ecommerce.nassim.model.Product;
 import com.esiea.ecommerce.nassim.network.NetworkManager;
 import com.esiea.ecommerce.nassim.network.RetrofitService;
+import com.esiea.ecommerce.nassim.utils.BottomNavigationHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
