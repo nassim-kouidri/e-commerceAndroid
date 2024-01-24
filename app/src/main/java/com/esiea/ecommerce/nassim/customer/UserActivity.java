@@ -1,6 +1,7 @@
 package com.esiea.ecommerce.nassim.customer;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -31,7 +32,6 @@ public class UserActivity extends AppCompatActivity {
     private EditText etUserName, etUserEmail, etUserPassword;
     private TextView tvUserId;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,7 @@ public class UserActivity extends AppCompatActivity {
         etUserPassword = findViewById(R.id.etUserPassword);
         tvUserId = findViewById(R.id.tvUserId);
         Button btnModify = findViewById(R.id.btnModify);
+        Button btnLogout = findViewById(R.id.btnLogout);
 
         fetchUserProfile();
 
@@ -61,9 +62,12 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        BottomNavigationHelper.setupBottomNavigation(this, R.id.navigation_product);
+        // Bouton de déconnexion
+        btnLogout.setOnClickListener(v -> logout());
 
+        BottomNavigationHelper.setupBottomNavigation(this, R.id.navigation_product);
     }
+
 
     private void fetchUserProfile() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -135,5 +139,19 @@ public class UserActivity extends AppCompatActivity {
                 Toast.makeText(UserActivity.this, "Erreur de connexion au serveur", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void logout() {
+        // Supprimer les tokens du SharedPreferences
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove("access_token");
+        editor.remove("refresh_token");
+        editor.apply();
+
+        // Rediriger vers la page LoginActivity
+        Intent intent = new Intent(UserActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

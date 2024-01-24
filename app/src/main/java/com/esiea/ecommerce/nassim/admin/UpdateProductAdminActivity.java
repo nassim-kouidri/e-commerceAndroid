@@ -54,7 +54,6 @@ import retrofit2.Response;
             @Override
             public void onResponse(@NonNull Call<Product> call, @NonNull Response<Product> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Récupérer les détails du produit et remplir le formulaire
                     updateUI(response);
                 } else {
                     Toast.makeText(UpdateProductAdminActivity.this, "Erreur de chargement des détails du produit", Toast.LENGTH_SHORT).show();
