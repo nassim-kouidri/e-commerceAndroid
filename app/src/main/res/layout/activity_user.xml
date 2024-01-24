@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/ivUserAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/default_avatar"
+        android:scaleType="centerCrop"/>
+
+    <EditText
+        android:id="@+id/etUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivUserAvatar"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Nom"/>
+
+    <EditText
+        android:id="@+id/etUserEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etUserName"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/etUserPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etUserEmail"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:id="@+id/tvUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etUserPassword"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnModify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUserId"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:text="Modifier"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:itemIconTint="@color/black"
+        app:menu="@menu/bottom_navigation_bar" />
+</RelativeLayout>

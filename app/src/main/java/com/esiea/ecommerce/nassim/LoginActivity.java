@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-        // Créer un objet LoginRequest avec les données
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail(email);
         loginRequest.setPassword(password);
@@ -60,13 +59,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<AuthResponse> call, @NonNull Response<AuthResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Connexion réussie
                     AuthResponse authResponse = response.body();
 
-                    // Stocker les tokens dans SharedPreferences
                     saveTokens(authResponse.getAccessToken(), authResponse.getRefreshToken());
 
-                    Intent intent = new Intent(LoginActivity.this, CategoryActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, ProductActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

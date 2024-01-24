@@ -1,4 +1,3 @@
-// CategoryActivity.java
 package com.esiea.ecommerce.nassim;
 
 import android.os.Bundle;
@@ -34,8 +33,9 @@ public class CategoryActivity extends AppCompatActivity {
         // Configurer la RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Appel Retrofit pour récupérer les catégories
         fetchData();
+
+        BottomNavigationHelper.setupBottomNavigation(this, R.id.navigation_product);
     }
 
     private void fetchData() {

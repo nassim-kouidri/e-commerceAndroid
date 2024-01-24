@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EcommerceNassim</string>
+    <string name="default_avatar">https://i.imgur.com/LDOO4Qs.jpg</string>
 </resources>

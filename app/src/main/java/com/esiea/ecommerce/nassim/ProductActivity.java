@@ -36,6 +36,9 @@ public class ProductActivity extends AppCompatActivity implements ProductAdapter
 
         // Appel Retrofit pour récupérer les produits
         fetchData();
+
+        BottomNavigationHelper.setupBottomNavigation(this, R.id.navigation_product);
+
     }
 
     private void fetchData() {

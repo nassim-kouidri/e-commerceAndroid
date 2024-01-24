@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_product"
+        android:icon="@drawable/blanktshirt"
+        android:title="Product" />
+    <item
+        android:id="@+id/navigation_category"
+        android:icon="@drawable/blanklist"
+        android:title="Category" />
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/blankuser"
+        android:title="User" />
+</menu>
