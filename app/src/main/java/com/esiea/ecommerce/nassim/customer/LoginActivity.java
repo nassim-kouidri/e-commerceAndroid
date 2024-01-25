@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.esiea.ecommerce.nassim.R;
 import com.esiea.ecommerce.nassim.admin.ProductAdminActivity;
+import com.esiea.ecommerce.nassim.admin.UserAdminActivity;
 import com.esiea.ecommerce.nassim.model.AuthResponse;
 import com.esiea.ecommerce.nassim.model.LoginRequest;
 import com.esiea.ecommerce.nassim.model.User;
@@ -100,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                         User user = response.body();
 
                         if ("admin".equals(user.getRole())) {
-                            Intent intent = new Intent(LoginActivity.this, ProductAdminActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, UserAdminActivity.class);
                             startActivity(intent);
                         } else if ("customer".equals(user.getRole())) {
                             Intent intent = new Intent(LoginActivity.this, ProductActivity.class);

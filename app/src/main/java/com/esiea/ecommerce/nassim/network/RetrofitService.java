@@ -50,4 +50,10 @@ public interface RetrofitService {
 
     @GET("products")
     Call<List<Product>> searchProducts(@Query("title") String title);
+
+    @GET("users")
+    Call<List<User>> getUsers();
+
+    @DELETE("users/{id}")
+    Call<Void> deleteUsers(@Path("id") int userId);
 }

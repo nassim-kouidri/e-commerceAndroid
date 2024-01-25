@@ -34,6 +34,7 @@
         <activity android:name=".customer.UserActivity" />
         <activity android:name=".admin.ProductAdminActivity" />
         <activity android:name=".admin.UpdateProductAdminActivity" />
+        <activity android:name=".admin.UserAdminActivity" />
 
     </application>
 

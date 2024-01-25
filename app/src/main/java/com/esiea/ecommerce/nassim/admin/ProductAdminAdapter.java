@@ -14,9 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.esiea.ecommerce.nassim.R;
 import com.esiea.ecommerce.nassim.model.Product;
+import com.esiea.ecommerce.nassim.network.NetworkManager;
+import com.esiea.ecommerce.nassim.network.RetrofitService;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProductAdminAdapter extends RecyclerView.Adapter<ProductAdminAdapter.ProductAdminViewHolder> {
 
@@ -67,12 +73,23 @@ public class ProductAdminAdapter extends RecyclerView.Adapter<ProductAdminAdapte
     }
 
     private void deleteProduct(int productId, int position) {
-        // La logique de suppression reste inchangée
-        // ...
+        RetrofitService retrofitService = NetworkManager.getRetrofitInstance().create(RetrofitService.class);
+        Call<Void> call = retrofitService.deleteProduct(productId);
 
-        // Notifier le changement à l'adaptateur
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, productListAdmin.size());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if (response.isSuccessful()) {
+                    productListAdmin.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, productListAdmin.size());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+            }
+        });
     }
 
     @Override

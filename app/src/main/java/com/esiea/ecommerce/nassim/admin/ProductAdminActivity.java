@@ -32,7 +32,6 @@ public class ProductAdminActivity extends AppCompatActivity implements ProductAd
 
         recyclerViewAdmin = findViewById(R.id.recyclerViewAdmin);
 
-        // Configurer la RecyclerView
         recyclerViewAdmin.setLayoutManager(new GridLayoutManager(this, 1));
 
         fetchData();
