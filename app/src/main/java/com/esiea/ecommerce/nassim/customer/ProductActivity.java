@@ -2,10 +2,14 @@ package com.esiea.ecommerce.nassim.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +18,8 @@ import com.esiea.ecommerce.nassim.model.Product;
 import com.esiea.ecommerce.nassim.network.NetworkManager;
 import com.esiea.ecommerce.nassim.network.RetrofitService;
 import com.esiea.ecommerce.nassim.utils.BottomNavigationHelper;
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -25,27 +31,38 @@ public class ProductActivity extends AppCompatActivity implements ProductAdapter
 
     private RecyclerView recyclerView;
     private List<Product> productList;
+    private ProductAdapter adapter;
+    private RetrofitService retrofitService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        // Initialiser retrofitService
+        retrofitService = NetworkManager.getRetrofitInstance().create(RetrofitService.class);
 
         // Configurer la RecyclerView
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        // Appel Retrofit pour récupérer les produits
-        fetchData();
+        // Charger tous les produits initialement
+        fetchData("");
 
+        // Configurer la Toolbar
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Initialiser le Bottom NavigationView
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> true);
+
+        // Configurer la Bottom Navigation
         BottomNavigationHelper.setupBottomNavigation(this, R.id.navigation_product);
-
     }
 
-    private void fetchData() {
-        RetrofitService retrofitService = NetworkManager.getRetrofitInstance().create(RetrofitService.class);
-        Call<List<Product>> call = retrofitService.getProducts();
+    private void fetchData(String title) {
+        Call<List<Product>> call = title.isEmpty() ? retrofitService.getProducts() : retrofitService.searchProducts(title);
 
         call.enqueue(new Callback<List<Product>>() {
             @Override
@@ -54,7 +71,7 @@ public class ProductActivity extends AppCompatActivity implements ProductAdapter
                     productList = response.body();
 
                     // Créer l'adaptateur
-                    ProductAdapter adapter = new ProductAdapter(productList, ProductActivity.this);
+                    adapter = new ProductAdapter(productList, ProductActivity.this);
 
                     // Configurer la RecyclerView avec l'adaptateur
                     recyclerView.setAdapter(adapter);
@@ -73,10 +90,32 @@ public class ProductActivity extends AppCompatActivity implements ProductAdapter
     @Override
     public void onProductClick(int position) {
         int productId = productList.get(position).getId();
-
         Intent intent = new Intent(ProductActivity.this, ProductDetailActivity.class);
         intent.putExtra("PRODUCT_ID", productId);
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.product_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) searchItem.getActionView();
+
+        assert searchView != null;
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                fetchData(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                fetchData(newText);
+                return false;
+            }
+        });
+
+        return true;
+    }
 }

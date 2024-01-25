@@ -18,6 +18,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitService {
     @GET("products")
@@ -46,4 +47,7 @@ public interface RetrofitService {
 
     @PUT("products/{id}")
     Call<Product> updateProduct(@Path("id") int productId, @Body ProductUpdateRequest modifiedProduct);
+
+    @GET("products")
+    Call<List<Product>> searchProducts(@Query("title") String title);
 }
