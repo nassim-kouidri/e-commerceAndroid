@@ -3,13 +3,13 @@
     <item
         android:id="@+id/navigation_product"
         android:icon="@drawable/blanktshirt"
-        android:title="Product" />
+        android:title="Products" />
     <item
         android:id="@+id/navigation_category"
         android:icon="@drawable/blanklist"
-        android:title="Category" />
+        android:title="Categories" />
     <item
         android:id="@+id/navigation_user"
         android:icon="@drawable/blankuser"
-        android:title="User" />
+        android:title="Profile" />
 </menu>

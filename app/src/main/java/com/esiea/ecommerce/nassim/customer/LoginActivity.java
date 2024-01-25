@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                         User user = response.body();
 
                         if ("admin".equals(user.getRole())) {
-                            Intent intent = new Intent(LoginActivity.this, UserAdminActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, ProductAdminActivity.class);
                             startActivity(intent);
                         } else if ("customer".equals(user.getRole())) {
                             Intent intent = new Intent(LoginActivity.this, ProductActivity.class);

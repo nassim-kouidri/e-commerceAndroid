@@ -13,6 +13,7 @@ import com.esiea.ecommerce.nassim.R;
 import com.esiea.ecommerce.nassim.model.Product;
 import com.esiea.ecommerce.nassim.network.NetworkManager;
 import com.esiea.ecommerce.nassim.network.RetrofitService;
+import com.esiea.ecommerce.nassim.utils.BottomNavigationAdminHelper;
 
 import java.util.List;
 
@@ -35,6 +36,9 @@ public class ProductAdminActivity extends AppCompatActivity implements ProductAd
         recyclerViewAdmin.setLayoutManager(new GridLayoutManager(this, 1));
 
         fetchData();
+
+        BottomNavigationAdminHelper.setupBottomNavigationAdmin(this, R.id.navigation_products);
+
     }
 
     private void fetchData() {

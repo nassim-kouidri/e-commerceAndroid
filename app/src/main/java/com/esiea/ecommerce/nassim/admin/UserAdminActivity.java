@@ -12,6 +12,7 @@ import com.esiea.ecommerce.nassim.R;
 import com.esiea.ecommerce.nassim.model.User;
 import com.esiea.ecommerce.nassim.network.NetworkManager;
 import com.esiea.ecommerce.nassim.network.RetrofitService;
+import com.esiea.ecommerce.nassim.utils.BottomNavigationAdminHelper;
 
 import java.util.List;
 
@@ -38,6 +39,9 @@ public class UserAdminActivity extends AppCompatActivity implements UserAdminAda
         recyclerViewUsers.setLayoutManager(new LinearLayoutManager(this));
 
         fetchUsers();
+
+        BottomNavigationAdminHelper.setupBottomNavigationAdmin(this, R.id.navigation_products);
+
     }
 
     private void fetchUsers() {
